@@ -11,6 +11,7 @@ router.post('/register', (req, res) => {
 
   Users.add(user)
     .then(saved => {
+      // a jwt should be generated here
       res.status(201).json(saved);
     })
     .catch(error => {
@@ -25,6 +26,7 @@ router.post('/login', (req, res) => {
     .first()
     .then(user => {
       if (user && bcrypt.compareSync(password, user.password)) {
+        // a jwt should be generated here
         res.status(200).json({
           message: `Welcome ${user.username}!`,
         });
