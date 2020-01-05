@@ -2,7 +2,7 @@ const router = require('express').Router();
 const bcrypt = require('bcryptjs');
 
 const Users = require('../users/users-model.js');
-
+console.log(process.env.JWT_SECRET)
 // for endpoints beginning with /api/auth
 router.post('/register', (req, res) => {
   let user = req.body;
@@ -38,5 +38,11 @@ router.post('/login', (req, res) => {
       res.status(500).json(error);
     });
 });
+
+function generateToken(user) {
+  // need a header, payload, and verify signature 
+  // payload -> username, id, roles, exp date
+  // verify sig -> a secret
+}
 
 module.exports = router;
